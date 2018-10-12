@@ -3,12 +3,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { StompService } from '@stomp/ng2-stompjs';
 
 @Component({
-    selector: 'app-deposit',
-    templateUrl: './deposit.component.html'
+    selector: 'app-withdrawal',
+    templateUrl: './withdrawal.component.html'
 })
-export class DepositComponent {
+export class WithdrawalComponent {
 
-    deposit: any = {};
+    withdrawal: any = {};
 
     constructor(public activeModal: NgbActiveModal, private stompService: StompService) {}
 
@@ -18,8 +18,8 @@ export class DepositComponent {
 
     submit() {
         this.activeModal.close();
-        console.log(`depositing ${this.deposit.amount} into ${this.deposit.bankAccountId}`);
-        this.stompService.publish('jms.queue.bank-accounts.deposit', JSON.stringify(this.deposit));
+        console.log(`withdrawing ${this.withdrawal.amount} from ${this.withdrawal.bankAccountId}`);
+        this.stompService.publish('jms.queue.bank-accounts.withdraw', JSON.stringify(this.withdrawal));
     }
 
 }

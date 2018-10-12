@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateBankAccountComponent } from './create.bank.account.component';
 import { DepositComponent } from './deposit.component';
 import { Subscription, Observable } from 'rxjs';
 import { StompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
+import { WithdrawalComponent } from './withdrawal.component';
 
 @Component({
     selector: 'app-bank-accounts',
@@ -19,12 +21,15 @@ export class BankAccountsComponent implements OnInit, OnDestroy {
     private messages: Observable<Message>;
     private topic = 'jms.topic.bankAccountsUpdates';
 
-    constructor(private modalService: NgbModal, private stompService: StompService) {
+    constructor(private modalService: NgbModal, private stompService: StompService, private http: HttpClient) {
         console.log('constructed BankAccountsComponent');
     }
 
     ngOnInit(): void {
-        this.subscribe();
+        this.http.get<Array<any>>('http://localhost:8080/api/bank-accounts').toPromise()
+            .then(result => this.bankAccounts = result);
+
+            this.subscribe();
     }
 
     ngOnDestroy(): void {
@@ -38,11 +43,13 @@ export class BankAccountsComponent implements OnInit, OnDestroy {
     deposit(bankAccountId: string) {
         console.log('deposit into ' + bankAccountId);
         const modalRef = this.modalService.open(DepositComponent);
-        modalRef.componentInstance.bankAccountId = bankAccountId;
+        modalRef.componentInstance.deposit.bankAccountId = bankAccountId;
     }
 
     withdraw(bankAccountId: string) {
         console.log('withdraw from ' + bankAccountId);
+        const modalRef = this.modalService.open(WithdrawalComponent);
+        modalRef.componentInstance.withdrawal.bankAccountId = bankAccountId;
     }
 
     transfer(bankAccountId: string) {

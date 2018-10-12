@@ -1,20 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { StompConfig, StompService } from '@stomp/ng2-stompjs';
-
 import { AppComponent } from './app.component';
 import { BankAccountsComponent } from './bank.accounts.component';
-import { CommonModule } from '@angular/common';
 import { CreateBankAccountComponent } from './create.bank.account.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DepositComponent } from './deposit.component';
+import { WithdrawalComponent } from './withdrawal.component';
+
 
 const stompConfig: StompConfig = {
     // Which server?
     url: 'ws://127.0.0.1:8080/stomp',
 
-    // Headers
+    // Headersimport { HttpClientModule } from '@angular/common/http';
+
     // Typical keys: login, passcode, host
     headers: {
         login: 'stomp',
@@ -41,16 +44,19 @@ const stompConfig: StompConfig = {
         AppComponent,
         BankAccountsComponent,
         CreateBankAccountComponent,
-        DepositComponent
+        DepositComponent,
+        WithdrawalComponent
     ],
     entryComponents: [
         CreateBankAccountComponent,
-        DepositComponent
+        DepositComponent,
+        WithdrawalComponent
     ],
     imports: [
         BrowserModule,
         CommonModule,
         FormsModule,
+        HttpClientModule,
         NgbModalModule
     ],
     providers: [
