@@ -10,6 +10,7 @@ import { BankAccountsComponent } from './bank.accounts.component';
 import { CreateBankAccountComponent } from './create.bank.account.component';
 import { DepositComponent } from './deposit.component';
 import { WithdrawalComponent } from './withdrawal.component';
+import { TransferComponent } from './transfer.component';
 
 
 const stompConfig: StompConfig = {
@@ -45,11 +46,13 @@ const stompConfig: StompConfig = {
         BankAccountsComponent,
         CreateBankAccountComponent,
         DepositComponent,
+        TransferComponent,
         WithdrawalComponent
     ],
     entryComponents: [
         CreateBankAccountComponent,
         DepositComponent,
+        TransferComponent,
         WithdrawalComponent
     ],
     imports: [
