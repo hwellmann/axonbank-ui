@@ -11,13 +11,12 @@ import { CreateBankAccountComponent } from './create.bank.account.component';
 import { DepositComponent } from './deposit.component';
 import { WithdrawalComponent } from './withdrawal.component';
 import { TransferComponent } from './transfer.component';
+import { BankTransfersComponent } from './bank.transfers.component';
 
 
 const stompConfig: StompConfig = {
     // Which server?
     url: 'ws://127.0.0.1:8080/stomp',
-
-    // Headersimport { HttpClientModule } from '@angular/common/http';
 
     // Typical keys: login, passcode, host
     headers: {
@@ -44,12 +43,14 @@ const stompConfig: StompConfig = {
     declarations: [
         AppComponent,
         BankAccountsComponent,
+        BankTransfersComponent,
         CreateBankAccountComponent,
         DepositComponent,
         TransferComponent,
         WithdrawalComponent
     ],
     entryComponents: [
+        BankTransfersComponent,
         CreateBankAccountComponent,
         DepositComponent,
         TransferComponent,

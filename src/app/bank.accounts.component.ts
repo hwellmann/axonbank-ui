@@ -8,6 +8,7 @@ import { StompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import { WithdrawalComponent } from './withdrawal.component';
 import { TransferComponent } from './transfer.component';
+import { BankTransfersComponent } from './bank.transfers.component';
 
 @Component({
     selector: 'app-bank-accounts',
@@ -62,6 +63,8 @@ export class BankAccountsComponent implements OnInit, OnDestroy {
 
     bankTransfers(bankAccountId: string) {
         console.log('show transfers from ' + bankAccountId);
+        const modalRef = this.modalService.open(BankTransfersComponent, { size: 'lg' });
+        modalRef.componentInstance.bankAccountId = bankAccountId;
     }
 
     subscribe() {
