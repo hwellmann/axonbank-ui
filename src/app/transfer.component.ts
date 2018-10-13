@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { StompService } from '@stomp/ng2-stompjs';
 
@@ -8,8 +8,8 @@ import { StompService } from '@stomp/ng2-stompjs';
 })
 export class TransferComponent {
 
-    bankTransfer: any = {};
-    bankAccounts: any[] = [];
+    bankTransfer: BankTransfer = {};
+    bankAccounts: BankAccount[] = [];
 
     constructor(public activeModal: NgbActiveModal, private stompService: StompService) {}
 
@@ -28,5 +28,4 @@ export class TransferComponent {
         return this.bankAccounts.filter(account =>
             (account.axonBankAccountId !== this.bankTransfer.sourceBankAccountId));
     }
-
 }

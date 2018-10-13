@@ -7,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './bank.transfers.component.html'
 })
 export class BankTransfersComponent implements OnInit {
-    bankTransfers: any[] = [];
+    bankTransfers: BankTransfer[] = [];
     bankAccountId: string;
 
 
@@ -15,9 +15,8 @@ export class BankTransfersComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.http.get<Array<any>>(`http://localhost:8080/api/bank-transfers/bank-account/${this.bankAccountId}`).toPromise()
+        this.http.get<Array<BankTransfer>>(`http://localhost:8080/api/bank-transfers/bank-account/${this.bankAccountId}`).toPromise()
             .then(result => this.bankTransfers = result);
-
     }
 
     cancel() {

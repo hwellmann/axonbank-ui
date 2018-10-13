@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { StompService } from '@stomp/ng2-stompjs';
 
@@ -8,7 +8,7 @@ import { StompService } from '@stomp/ng2-stompjs';
 })
 export class DepositComponent {
 
-    deposit: any = {};
+    deposit: Deposit = { bankAccountId: '', amount: 0};
 
     constructor(public activeModal: NgbActiveModal, private stompService: StompService) {}
 

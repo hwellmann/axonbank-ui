@@ -16,7 +16,7 @@ import { BankTransfersComponent } from './bank.transfers.component';
     styleUrls: ['./bank.accounts.component.css']
 })
 export class BankAccountsComponent implements OnInit, OnDestroy {
-    bankAccounts: any[] = [];
+    bankAccounts: BankAccount[] = [];
 
     private subscription: Subscription;
     private subscribed: boolean;
